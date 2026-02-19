@@ -2,6 +2,28 @@ from desc.io import load
 import desc
 import numpy as np
 
+def length_k_t(coilset):
+    total_current_length = 0
+    mean_curvature_list = []
+    mean_torsion_list = []
+    max_curvature_list = []
+    max_torsion_list = []
+    for coil in coilset:
+        total_current_length += coil.current * coil.compute('length')['length']
+        kappa = coil.compute('curvature')['curvature']
+        tau = coil.compute('torsion')['torsion']
+        mean_curvature_list.append(np.mean(kappa**2))
+        mean_torsion_list.append(np.mean(tau**2))
+        max_curvature_list.append(np.max(kappa**2))
+        max_torsion_list.append(np.max(tau**2))
+    
+    mean_k2 = np.mean(mean_curvature_list)
+    mean_t2 = np.mean(mean_torsion_list)
+    max_k2 = np.max(max_curvature_list)
+    max_t2 = np.max(max_torsion_list)
+
+    return mean_k2, mean_t2, max_k2, max_t2
+
 def total_reactor_cost(
         eq,
         coilset,

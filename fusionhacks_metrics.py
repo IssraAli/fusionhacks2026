@@ -216,7 +216,7 @@ def temp_from_eq(
         args = args,
         x0=5
     )
-    print(f'T: {t_solved}')
+    #print(f'T: {t_solved}')
     return t_solved
 
 def neutron_fluence(eq,T):
@@ -232,7 +232,7 @@ def neutron_fluence(eq,T):
     B_on_axis = eq.compute('<|B|>_axis')['<|B|>_axis']
     vol = eq.compute('V')['V']
     n = (beta * B_on_axis**2) / (2*mu0*T*1.6022e-16)
-    print(f'density: {n}')
+    #print(f'density: {n}')
     fluence = 0.25*(n**2)*sigmav(T)*vol
     return fluence
 
