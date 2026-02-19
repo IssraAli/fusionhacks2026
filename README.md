@@ -18,7 +18,9 @@ Designing the equilibrium and coils is a multi-objective optimization problem: e
 ### The equilibrium
 
 The rate of neutron production is given by the following equation:
+
 $$R = \frac{n^2}{4}\langle \sigma v \rangle V$$
+
 where $n$ is the number density of ions in the reactor, $\langle \sigma v \rangle(T)$ is the reaction rate parameter (a known function of the temperature $T$ that is essentially proportional to the likelihood of a fusion reaction occuring). To compute the reaction rate given a reactor geometry, we need to determine the **density** and the **temperature** in a self-consistent manner. 
 
 In a real fusion reactor, density and temperature are functions of the minor-radial coordinate, and are determined by the energy and particle transport equations. Solving the transport equations accurately is a catastrophically complicated problem: it depends on the neoclassical and turbulent heat fluxes, the magnetic geometry, the heating scheme, the fueling scheme, etc. However, for the sake of this hackathon, we can take a step back from the details of the physics itself, and look at the power balance of a reactor:
@@ -75,7 +77,7 @@ $$\frac{\boldsymbol{B}\cdot \hat{\boldsymbol{n}}}{B}|_{\rho=1}$$
 
 which is the field stength-normalized projection of the magnetic field due to the coils on the boundary of the plasma. This quantity should be of order $10^{-3}$. In our scoring, if your coils have field error in excess of $5\cdot10^{-3}$, we will begin penalizing your reaction rate. The coils are important in determining the cost of your reactor, which will be computed via the following formula:
 
-$$
+```math
 \begin{aligned}
 \text{Cost} = & \; \text{baseline} \times \Bigg[
 c_v \left(\frac{V}{V_0}\right)^{1.1} 
@@ -89,7 +91,7 @@ C_{\rm kt} = & \; \sqrt{ f_k \, \langle \kappa^2 \rangle_{\rm} + f_t \, \langle 
 \\[1mm]
 |I L| = & \; \sum_{\rm coil} I_{\rm coil} \, L_{\rm coil}
 \end{aligned}
-$$
+```
 
 with:
 - $V$ : reactor volume  
